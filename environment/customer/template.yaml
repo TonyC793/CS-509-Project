@@ -1,0 +1,110 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  customer
+
+  Sample SAM Template for customer
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  ListStoresFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: list-stores/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        ListStores:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /listStores
+            Method: post
+  ListItemsFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: list-items/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        ListItems:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /listItems
+            Method: post
+  FindItemFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: find-item/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        FindItem:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /findItem
+            Method: post
+  BuyItemFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: buy-item/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        BuyItem:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /buyItem
+            Method: post
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  ListStoresApi:
+    Description: "API Gateway endpoint URL for Prod stage for List Stores function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/listStores/"
+  ListStoresFunction:
+    Description: "List Stores Lambda Function ARN"
+    Value: !GetAtt ListStoresFunction.Arn
+  ListStoresFunctionIamRole:
+    Description: "Implicit IAM Role created for List Stores function"
+    Value: !GetAtt ListStoresFunctionRole.Arn
+  ListItemsApi:
+    Description: "API Gateway endpoint URL for Prod stage for List Items function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/listItems/"
+  ListItemsFunction:
+    Description: "List Items Lambda Function ARN"
+    Value: !GetAtt ListItemsFunction.Arn
+  ListItemsFunctionIamRole:
+    Description: "Implicit IAM Role created for List Items function"
+    Value: !GetAtt ListItemsFunctionRole.Arn
+  FindItemApi:
+    Description: "API Gateway endpoint URL for Prod stage for Find Item function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/findItem/"
+  FindItemFunction:
+    Description: "Find Item Lambda Function ARN"
+    Value: !GetAtt FindItemFunction.Arn
+  FindItemFunctionIamRole:
+    Description: "Implicit IAM Role created for Find Item function"
+    Value: !GetAtt FindItemFunctionRole.Arn
+  BuyItemApi:
+    Description: "API Gateway endpoint URL for Prod stage for Buy Item function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/buyItem/"
+  BuyItemFunction:
+    Description: "Buy Item Lambda Function ARN"
+    Value: !GetAtt BuyItemFunction.Arn
+  BuyItemFunctionIamRole:
+    Description: "Implicit IAM Role created for Buy Item function"
+    Value: !GetAtt BuyItemFunctionRole.Arn

@@ -1,0 +1,134 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  manager
+
+  Sample SAM Template for manager
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  ProcessShipmentFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: process-shipment/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        ProcessShipment:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /processShipment
+            Method: post
+  ManagerGenerateInventoryReportFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: manager-generate-inventory-report/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        ProcessShipment:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /managerGenerateInventoryReport
+            Method: post
+  FillShelvesFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: fill-shelves/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        FillShelves:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /fillShelves
+            Method: post
+  GenerateOverstockReportFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: generate-overstock-report/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        GenerateOverstockReport:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /generateOverstockReport
+            Method: post
+  ShowMissingItemsFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: show-missing-items/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        ShowMissingItems:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /showMissingItems
+            Method: post
+
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  ProcessShipmentApi:
+    Description: "API Gateway endpoint URL for Prod stage for ProcessShipment function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/processShipment/"
+  ProcessShipmentFunction:
+    Description: "Process Shipment Lambda Function ARN"
+    Value: !GetAtt ProcessShipmentFunction.Arn
+  ProcessShipmentFunctionIamRole:
+    Description: "Implicit IAM Role created for Process Shipment function"
+    Value: !GetAtt ProcessShipmentFunctionRole.Arn
+  ManagerGenerateInventoryReportApi:
+    Description: "API Gateway endpoint URL for Prod stage for ProcessShipment function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/managerGenerateInventoryReport/"
+  ManagerGenerateInventoryReportFunction:
+    Description: "Generate Inventory Report Lambda Function ARN"
+    Value: !GetAtt ManagerGenerateInventoryReportFunction.Arn
+  ManagerGenerateInventoryReportFunctionIamRole:
+    Description: "Implicit IAM Role created for Generate Inventory Report function"
+    Value: !GetAtt ManagerGenerateInventoryReportFunctionRole.Arn
+  FillShelvesApi:
+    Description: "API Gateway endpoint URL for Prod stage for Fill Shelves function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/fillShelves/"
+  FillShelvesFunction:
+    Description: "Process Shipment Lambda Function ARN"
+    Value: !GetAtt FillShelvesFunction.Arn
+  FillShelvesFunctionIamRole:
+    Description: "Implicit IAM Role created for Fill Shelvesfunction"
+    Value: !GetAtt FillShelvesFunctionRole.Arn
+  GenerateOverstockReportApi:
+    Description: "API Gateway endpoint URL for Prod stage for Overstock function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/generateOverstockReport/"
+  GenerateOverstockReportFunction:
+    Description: "Generate Overstock Report Lambda Function ARN"
+    Value: !GetAtt GenerateOverstockReportFunction.Arn
+  GenerateOverstockReportFunctionIamRole:
+    Description: "Implicit IAM Role created for Generate Overstock Report function"
+    Value: !GetAtt GenerateOverstockReportFunctionRole.Arn
+  ShowMissingItemsApi:
+    Description: "API Gateway endpoint URL for Prod stage for Show Missing Items function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/showMissingItems/"
+  ShowMissingItemsFunction:
+    Description: "ShowMissingItems Lambda Function ARN"
+    Value: !GetAtt ShowMissingItemsFunction.Arn
+  ShowMissingItemsFunctionIamRole:
+    Description: "Implicit IAM Role created for Show Missing Items function"
+    Value: !GetAtt ShowMissingItemsFunctionRole.Arn

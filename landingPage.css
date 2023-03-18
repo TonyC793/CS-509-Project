@@ -1,0 +1,33 @@
+.grid-container {
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: 12;
+}
+
+#welcome-msg {
+    grid-column-start: 1;
+    grid-column-end: 12;
+    text-align: center;
+}
+
+.log-in-corporate-container {
+    padding-left: 1em;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: #A3F7B5;
+    padding: 2em;
+}
+
+.log-in-manager-container {
+    grid-column-start: 4;
+    grid-column-end: 8;
+    background-color: #A3F7B5;
+    padding: 2em;
+}
+
+.log-in-customer-container {
+    grid-column-start: 8;
+    grid-column-end: 12;
+    background-color: #A3F7B5;
+    padding: 2em;
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Manager Home Page</title>
+        <meta name="description" content="Landing page for manager">
+        <meta name="keywords" content="manager home CS509 WPI">
+        <link rel="stylesheet" href="../general.css">
+        <link rel="stylesheet" href="manager.css">
+        <script type="text/javascript" src="manager.js"></script>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div id="welcome-msg">
+                <h1>Welcome Manager!</h1>
+            </div>
+            <div class="process-shipment-container">
+                <h2>Process Shipment</h2>
+                <label for="numItems"># of Items in Shipment:</label>
+                <input type="text" id="numItems" name="numItems" value=""><br />
+                <a href="#" id="" onclick="addFields()">Open Form</a>
+                <form name="processShipmentForm" method="post" name="addValues">
+                    <div id="container">
+
+                    </div>
+                    <input type="button" value="Process" id="processButton" style="visibility: hidden;" onClick="JavaScript:handleProcessShipmentClick(this)" />
+                    <div id="processResponse">
+
+                    </div>
+                </form>
+            </div>
+            <div class="generate-report-container">
+                <h2>Generate Inventory Report</h2>
+                <form name="generateReportForm" method="post" name="addValues">
+                    <input type="button" value="Generate" onClick="JavaScript:handleGenerateInventoryReportClick(this)" />
+                    <div id="generateReportResponse">
+
+                    </div>
+                </form>
+            </div>
+            <div class="overstock-items-container">
+                <h2>Generate Overstock Report</h2>
+                <form name="generateOverstockReportForm" method="post" name="addValues">
+                    <input type="button" value="Generate" onClick="JavaScript:handleGenerateOverstockReportClick(this)" />
+                    <div id="generateOverstockReportResponse">
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="fill-shelves-container">
+                <h2>Fill Shelves</h2>
+                <form name="generateOverstockReportForm" method="post" name="addValues">
+                    <input type="button" value="Fill" onClick="JavaScript:handleFillShelvesClick(this)" />
+                    <div id="fillShelvesResponse">
+
+                    </div>
+                </form>
+            </div>
+            <div class="missing-items-container">
+                <h2>Show Missing Items</h2>
+                <form name="" method="post" name="addValues">
+                    <input type="button" value="Show" onClick="JavaScript:handleShowMissingItemsClick(this)" />
+                    <div id="showMissingItemsResponse">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

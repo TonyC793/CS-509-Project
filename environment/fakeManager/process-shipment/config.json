@@ -1,0 +1,6 @@
+{
+    "host" : "hyperenthusiasmdb.clrc4nmdegh9.us-east-1.rds.amazonaws.com",
+    "user" : "hyper_admin",
+    "password" : "dbPassword",
+    "database" : "info"
+}

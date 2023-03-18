@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Customer Home Page</title>
+        <meta name="description" content="Landing page for customer">
+        <meta name="keywords" content="customer home CS509 WPI">
+        <script type="text/javascript" src="customer.js"></script>
+        <link rel="stylesheet" href="../general.css">
+        <link rel="stylesheet" href="customer.css">
+    </head>
+    <body>
+        <div class="grid-container">
+            <div id="welcome-msg">
+                <h1>Welcome Customer!</h1>
+            </div>
+            <div class="list-stores-container">
+                <h2>Search Stores Near You</h2>
+                <form name="listStoresForm" method="post" name="addValues">
+                    <label for="lat">Latitude:</label>
+                    <input name="lat" id="lat" value="" /><br><br>
+                    <label for="long">Longitude:</label>
+                    <input name="long" id="long" value="" /><br><br>
+                    <input type="button" value="List Stores" onClick="JavaScript:handleListStoresClick(this)" />
+                </form>
+                <div id="storeList">
+
+                </div>
+            </div>
+            <div class="check-shelf-container">
+                <h2>Check Shelf</h2>
+                <form name="listShelfForm" method="post" name="listShelf">
+                    <label for="aisle">Aisle:</label>
+                    <input name="aisle" id="aisle" value="" /><br><br>
+                    <label for="shelf">Shelf:</label>
+                    <input name="shelf" id="shelf" value="" /><br><br>
+                    <label for="store_id">Store ID:</label>
+                    <input name="store_id" id="store_id" value="" /><br><br>
+                    <input type="button" value="List Items on Shelf" onClick="JavaScript:handleListItemsClick(this)" />
+                </form>
+                <div id="itemList">
+
+                </div>
+            </div>
+            <div class="search-item-container">
+                <h2>Search for Item</h2>
+                <form name="findItemForm" method="post" name="findItem">
+                    <label for="sku">Enter SKU:</label>
+                    <input type="text" id="sku" name="sku" value=""><br><br>
+                    <label for="itemName">Enter Name:</label>
+                    <input type="text" id="itemName" name="itemName" value=""><br><br>
+                    <label for="desc">Enter Description:</label>
+                    <input type="text" id="desc" name="desc" value=""><br><br>
+                    <label for="lat">Latitude:</label>
+                    <input name="lat" id="lat" value="" /><br><br>
+                    <label for="long">Longitude:</label>
+                    <input name="long" id="long" value="" /><br><br>
+                    <input type="button" value="Search Item" onClick="JavaScript:handleFindItemClick(this)" />
+                </form>
+                <div id="availabilityList">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

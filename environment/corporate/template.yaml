@@ -1,0 +1,179 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  corporate
+
+  Sample SAM Template for corporate
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  CreateStoreFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: create-store/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        CreateStore:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /createStore
+            Method: post
+  CreateItemFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: create-item/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        CreateItem:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /createItem
+            Method: post
+  AssignLocationFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: assign-location/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        AssignLocation:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /assignLocation
+            Method: post
+  RemoveStoreFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: remove-store/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        RemoveStore:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /removeStore
+            Method: post
+  ListStoresFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: list-stores/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        ListStores:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /listStores
+            Method: post
+  GenerateInventoryReportFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: generate-inv-report/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        GenerateInventoryReport:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /generateInventoryReport
+            Method: post
+  GenerateTotalInventoryReportFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: generate-total-inv-report/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        GenerateTotalInventoryReport:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /generateTotalInventoryReport
+            Method: post
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  CreateStoreApi:
+    Description: "API Gateway endpoint URL for Prod stage for Create Store function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/createStore/"
+  CreateStoreFunction:
+    Description: "Create Store Lambda Function ARN"
+    Value: !GetAtt CreateStoreFunction.Arn
+  CreateStoreFunctionIamRole:
+    Description: "Implicit IAM Role created for Create Store function"
+    Value: !GetAtt CreateStoreFunctionRole.Arn
+  CreateItemApi:
+    Description: "API Gateway endpoint URL for Prod stage for Create Item function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/createItem/"
+  CreateItemFunction:
+    Description: "Create Store Lambda Function ARN"
+    Value: !GetAtt CreateItemFunction.Arn
+  CreateItemFunctionIamRole:
+    Description: "Implicit IAM Role created for Create Item function"
+    Value: !GetAtt CreateItemFunctionRole.Arn
+  AssignLocationApi:
+    Description: "API Gateway endpoint URL for Prod stage for Assign Location function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/assignLocation/"
+  AssignLocationFunction:
+    Description: "Assign Location Lambda Function ARN"
+    Value: !GetAtt AssignLocationFunction.Arn
+  AssignLocationFunctionIamRole:
+    Description: "Implicit IAM Role created for Assign Location function"
+    Value: !GetAtt AssignLocationFunctionRole.Arn
+  RemoveStoreApi:
+    Description: "API Gateway endpoint URL for Prod stage for Remove Store function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/removeStore/"
+  RemoveStoreFunction:
+    Description: "RemoveStore Lambda Function ARN"
+    Value: !GetAtt RemoveStoreFunction.Arn
+  RemoveStoreFunctionIamRole:
+    Description: "Implicit IAM Role created for Remove Store function"
+    Value: !GetAtt RemoveStoreFunctionRole.Arn
+  ListStoresApi:
+    Description: "API Gateway endpoint URL for Prod stage for List Stores function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/listStores/"
+  ListStoresFunction:
+    Description: "List Stores Lambda Function ARN"
+    Value: !GetAtt ListStoresFunction.Arn
+  ListStoresFunctionIamRole:
+    Description: "Implicit IAM Role created for List Stores function"
+    Value: !GetAtt ListStoresFunctionRole.Arn
+  GenerateInventoryReportApi:
+    Description: "API Gateway endpoint URL for Prod stage for Generate Inventory Report function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/generateInventoryReport/"
+  GenerateInventoryReportFunction:
+    Description: "Generate Inventory Report Lambda Function ARN"
+    Value: !GetAtt GenerateInventoryReportFunction.Arn
+  GenerateInventoryReportFunctionIamRole:
+    Description: "Implicit IAM Role created for Generate Inventory Report function"
+    Value: !GetAtt GenerateInventoryReportFunctionRole.Arn
+  GenerateTotalInventoryReportApi:
+    Description: "API Gateway endpoint URL for Prod stage for Generate Total Inventory Report function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/generateTotalInventoryReport/"
+  GenerateTotalInventoryReportFunction:
+    Description: "Generate Inventory Report Lambda Function ARN"
+    Value: !GetAtt GenerateTotalInventoryReportFunction.Arn
+  GenerateTotalInventoryReportFunctionIamRole:
+    Description: "Implicit IAM Role created for Generate Total Inventory Report function"
+    Value: !GetAtt GenerateTotalInventoryReportFunctionRole.Arn

@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  manager
+
+  Sample SAM Template for manager
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  LogInCorporateFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: log-in-corporate/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        LogInCorporate:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /logInCorporate
+            Method: post
+  LogInManagerFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: log-in-manager/
+      Handler: app.lambdaHandler
+      Runtime: nodejs14.x
+      Architectures:
+        - x86_64
+      Events:
+        LogInManager:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /logInManager
+            Method: post
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  LogInCorporateApi:
+    Description: "API Gateway endpoint URL for Prod stage for LogInCorporate function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/LogInCorporate/"
+  LogInCorporateFunction:
+    Description: "LogInCorporate Lambda Function ARN"
+    Value: !GetAtt LogInCorporateFunction.Arn
+  LogInCorporateFunctionIamRole:
+    Description: "Implicit IAM Role created for LogInCorporate function"
+    Value: !GetAtt LogInCorporateFunctionRole.Arn
+  LogInManagerApi:
+    Description: "API Gateway endpoint URL for Prod stage for LogInManager function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/LogInManager/"
+  LogInManagerFunction:
+    Description: "LogInManager Lambda Function ARN"
+    Value: !GetAtt LogInManagerFunction.Arn
+  LogInManagerFunctionIamRole:
+    Description: "Implicit IAM Role created for LogInManager function"
+    Value: !GetAtt LogInManagerFunctionRole.Arn

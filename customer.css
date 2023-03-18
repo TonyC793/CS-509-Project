@@ -1,0 +1,31 @@
+h1 {
+    color: blue;
+}
+
+#welcome-msg {
+    grid-column-start: 1;
+    grid-column-end: 12;
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: 12;
+}
+
+.find-store-container {
+    padding-left: 1em;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.check-shelf-container {
+    grid-column-start: 4;
+    grid-column-end: 8;
+}
+
+.search-item-container {
+    grid-column-start: 8;
+    grid-column-end: 12;
+}

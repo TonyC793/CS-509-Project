@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Corporate Home Page</title>
+        <meta name="description" content="Landing page for corporate">
+        <meta name="keywords" content="corporate home CS509 WPI">
+        <link rel="stylesheet" href="../general.css">
+        <link rel="stylesheet" href="corporate.css">
+        <script type="text/javascript" src="corporate.js"></script>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div id="welcome-msg">
+                <h1>Welcome Corporate!</h1>
+            </div>
+            <div class="create-item-container">
+                <h2>Create Item</h2>
+                <form name="createItemForm" method="post" name="addValues">
+                    <label for="sku">Enter SKU:</label>
+                    <input id="sku" name="sku" value=""><br><br>
+                    <label for="itemName">Enter Name:</label>
+                    <input id="itemName" name="itemName" value=""><br><br>
+                    <label for="description">Enter Description:</label>
+                    <input id="description" name="description" value=""><br><br>
+                    <label for="price">Enter Price:</label>
+                    <input id="price" name="price" value=""><br><br>
+                    <label for="maxQ">Enter Max Quantity:</label>
+                    <input id="maxQ" name="maxQ" value=""><br><br>
+                    <input type="button" value="Create Item" onClick="JavaScript:handleCreateItemClick(this)" />
+                </form>
+                <div id="itemList">
+
+                </div>
+            </div>
+            <div class="assign-location-container">
+                <h2>Assign Item Location</h2>
+                <form name="assignLocationForm" method="post" name="addValues">
+                    <label for="sku">Enter SKU:</label>
+                    <input id="sku" name="sku" value=""><br><br>
+                    <label for="aisle">Enter Aisle:</label>
+                    <input id="aisle" name="aisle" value=""><br><br>
+                    <label for="shelf">Enter Shelf:</label>
+                    <input id="shelf" name="shelf" value=""><br><br>
+                    <input type="button" value="Assign Location" onClick="JavaScript:handleAssignLocationClick(this)" />
+                    <div id="assign-location-response">
+
+                    </div>
+                </form>
+            </div>
+            <div class="create-store-container">
+                <h2>Create Store</h2>
+                <form name="createStoreForm" method="post" name="addValues">
+                    <label for="lat">Latitude:</label>
+                    <input name="lat" id="lat" value="" /><br><br>
+                    <label for="long">Longitude:</label>
+                    <input name="long" id="long" value="" /><br><br>
+                    <label for="s_name">Store Name:</label>
+                    <input name="s_name" id="s_name" value="" /><br><br>
+                    <label for="s_name">Manager Name:</label>
+                    <input name="s_manager_name" id="s_manager_name" value="" /><br><br>
+                    <label for="s_manager_pw">Manager Password:</label>
+                    <input name="s_manager_pw" id="s_manager_pw" value="" /><br><br>
+                    <input type="button" value="Add Store" onClick="JavaScript:handleCreateStoreClick(this)" />
+                </form>
+                <input type="button" value="List Stores" onClick="JavaScript:handleListStoresClick(this)" />
+                <div id="storeList">
+
+                </div>
+            </div>
+            <div class="generate-total-report-container">
+                <h2>Generate Total Inventory Report</h2>
+                <form name="generateReportForm" method="post" name="addValues">
+                    <input type="button" value="Generate" onClick="JavaScript:handleGenerateTotalInventoryReportClick(this)" />
+                    <div id="generateTotalReportResponse">
+
+                    </div>
+                </form>
+            </div>
+            <div class="generate-report-container">
+                <h2>Generate Inventory Report</h2>
+                
+                <form name="generateInventoryReportForm" method="post" name="addValues">
+                    <label for="store">Enter Store ID:</label>
+                    <input id="store" name="store" value=""><br><br>
+                    <input type="button" value="Generate" onClick="JavaScript:handleGenerateInventoryReportClick(this)" />
+                    <div id="generateReportResponse">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

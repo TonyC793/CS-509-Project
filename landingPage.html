@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Hyperenthusiasm Hub Page</title>
+        <meta name="description" content="Hub page for Iteration 1">
+        <link rel="stylesheet" href="general.css">
+        <link rel="stylesheet" href="landingPage.css">
+        <script type="text/javascript" src="landingPage.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="grid-container">
+            <div id="welcome-msg">
+                <h1>CS 509 Hyperenthusiasm Project</h1>
+            </div>
+            <div class="log-in-corporate-container">
+                <h2>Log In Corporate</h2>
+                <form name="corporateLogInForm" method="post" name="addValues">
+                    <label for="c_username">Enter Username:</label>
+                    <input id="c_username" name="c_username" value=""><br><br>
+                    <label for="c_password">Enter Password:</label>
+                    <input id="c_password" name="c_password" value=""><br><br>
+                    <input type="button" value="Log In" onClick="JavaScript:handleCorporateLoginClick(this)" />
+                    <div id="c_loginResponse"></div>
+                </form>
+            </div>
+            <div class="log-in-manager-container">
+                <h2>Log In Manager</h2>
+                <form name="managerLogInForm" method="post" name="addValues">
+                    <label for="m_username">Enter Username:</label>
+                    <input id="m_username" name="m_username" value=""><br><br>
+                    <label for="m_password">Enter Password:</label>
+                    <input id="m_password" name="m_password" value=""><br><br>
+                    <input type="button" value="Log In" onClick="JavaScript:handleManagerLoginClick(this)" />
+                    <div id="m_loginResponse"></div>
+                </form>
+            </div>
+            <div class="log-in-customer-container">
+                <a href="./customer/customer.html">Customer Landing Page</a>
+            </div>
+        </div>
+    </body>
+</html>

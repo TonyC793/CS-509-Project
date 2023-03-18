@@ -1,0 +1,36 @@
+h1 {
+    color: blue;
+}
+
+#welcome-msg {
+    grid-column-start: 1;
+    grid-column-end: 12;
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    column-gap: 50px;
+    grid-template-columns: 12;
+}
+
+.process-shipment-container {
+    padding-left: 1em;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.generate-report-container {
+    grid-column-start: 3;
+    grid-column-end: 6;
+}
+
+.search-store-container {
+    grid-column-start: 6;
+    grid-column-end: 9;
+}
+
+.delete-store-container {
+    grid-column-start: 9;
+    grid-column-end: 12;
+}

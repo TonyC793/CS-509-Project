@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Customer Home Page</title>
+        <meta name="description" content="Landing page for customer">
+        <meta name="keywords" content="customer home CS509 WPI">
+        <link rel="stylesheet" href="customer.css">
+    </head>
+    <body>
+        <div class="grid-container">
+            <div id="welcome-msg">
+                <h1>Welcome Customer!</h1>
+            </div>
+            <div class="find-store-container">
+                <form>
+                    <label for="latitude">Enter Latitude:</label>
+                    <input type="text" id="latitude" name="latitude" value=""><br><br>
+                    <label for="longitude">Enter Longitude:</label>
+                    <input type="text" id="longitude" name="longitude" value=""><br><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="check-shelf-container">
+                <form>
+                    <label for="store">Enter Store:</label>
+                    <input type="text" id="store" name="store" value=""><br><br>
+                    <label for="aisle">Enter Aisle:</label>
+                    <input type="text" id="aisle" name="aisle" value=""><br><br>
+                    <label for="shelf">Enter Shelf:</label>
+                    <input type="text" id="shelf" name="shelf" value=""><br><br>
+                    <input type="submit" value="Check Items on Shelf">
+                </form>
+            </div>
+            <div class="search-item-container">
+                <form>
+                    <label for="sku">Enter SKU:</label>
+                    <input type="text" id="sku" name="sku" value=""><br><br>
+                    <label for="description">Enter Description:</label>
+                    <input type="text" id="description" name="description" value=""><br><br>
+                    <label for="item-name">Enter Name:</label>
+                    <input type="text" id="item-name" name="item-name" value=""><br><br>
+                    <input type="submit" value="Search Item">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
